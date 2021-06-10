@@ -194,6 +194,10 @@ public class LatestEventTimeLogger implements IEventLogger {
 		public synchronized String toString() {
 			StringBuilder buf = new StringBuilder();
 			int len = Math.min(count, bufferSize);
+
+                        // log timestamp
+                        buf.append(System.currentTimeMillis()).append(",");
+
 			for (int i=0; i<len; i++) {
 				if (i>0) buf.append(",");
 				int idx = (count >= bufferSize) ? (nextPos + i) % bufferSize : i;
